@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="weatherpicsApp" >
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,7 @@
 <script src="/static/js/app.js"></script>
 
 </head>
-<body ng-app="weatherpicsApp">
+<body ng-controller="WeatherpicsController as weatherpicsCtrl">
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -45,7 +45,7 @@
   <div class="container">
     <div id="columns">
       <!-- loop -->
-      <div class="pin">
+      <div class="pin" ng-repeat="pic in weatherpicsCtrl.pics">
         <div class="hidden pull-right edit-actions">
           <button data-toggle="modal" data-target="#insert-weatherpic-modal" type="button"
             class="edit-weatherpic btn btn-xs btn-success">
@@ -58,9 +58,8 @@
 
           </button>
         </div>
-<!--         <img src="{{ weatherpic.image_url }}" alt="A picture of weather">
-        <p class="caption">{{ weatherpic.caption }}</p>
- -->
+         <img src="{{ pic.image_url }}" alt="A picture of weather">
+        <p class="caption">{{ pic.caption }}</p>
       </div>
     </div>
 

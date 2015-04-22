@@ -1,9 +1,41 @@
 (function() {
-  var app = angular.module("weatherpicsApp", []);
+  var app = angular.module("weatherpicsApp", ["ui.bootstrap"]);
   
-  app.controller("WeatherpicsController", function() {
+  app.controller("WeatherpicsController", function($modal) {
+    
+    
     this.pics = pics;
+    var weatherpicsController = this;
+    
+    this.showInsertPicDialog = function() {
+      
+      var modalInstance = $modal.open({
+        templateUrl: "/static/partials/insert_pic_modal.html",
+        controller: "InsertModalController",
+        controllerAs: "insertModalCtrl",
+      });
+
+      modalInstance.result.then(function (weatherpicFromModal) {
+        weatherpicsController.pics.push(weatherpicFromModal);
+      });
+    };
   });
+
+  
+  app.controller("InsertModalController", function($modalInstance) {
+    this.imageUrl = "";
+    this.caption = "";
+    
+    this.insertPic = function () {
+      var weatherpicFromModal = {image_url: this.imageUrl, caption: this.caption};
+      $modalInstance.close(weatherpicFromModal);
+    };
+
+    this.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+  });
+  
   
   var pics = [
               {image_url: "http://severe-wx.pbworks.com/f/tornado.jpg", caption:"Wow!"},

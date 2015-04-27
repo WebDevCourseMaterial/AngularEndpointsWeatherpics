@@ -6,6 +6,7 @@
     
     this.pics = pics;
     var weatherpicsController = this;
+    this.navbarCollapsed = true;
     
     this.showInsertPicDialog = function() {
       
@@ -21,7 +22,6 @@
     };
   });
 
-  
   app.controller("InsertModalController", function($modalInstance, $timeout) {
     this.imageUrl = "";
     this.caption = "";

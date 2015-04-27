@@ -22,7 +22,7 @@
   });
 
   
-  app.controller("InsertModalController", function($modalInstance) {
+  app.controller("InsertModalController", function($modalInstance, $timeout) {
     this.imageUrl = "";
     this.caption = "";
     
@@ -31,6 +31,13 @@
       $modalInstance.close(weatherpicFromModal);
     };
 
+    // Add comment
+    $modalInstance.opened.then(function() {
+      $timeout(function() {
+        document.querySelector("#image-url-input").focus();
+      }, 100);
+    });
+    
     this.cancel = function () {
       $modalInstance.dismiss('cancel');
     };

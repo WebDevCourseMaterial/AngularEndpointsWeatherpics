@@ -1,50 +1,39 @@
 (function() {
-  var app = angular.module("weatherpicsApp", ["ui.bootstrap"]);
+  var app = angular.module("weatherpicsApp", ["ui.bootstrap", "modalControllers"]);
   
   app.controller("WeatherpicsController", function($modal) {
-    
-    
     this.pics = pics;
     var weatherpicsController = this;
     this.navbarCollapsed = true;
     
-    this.showInsertPicDialog = function() {
+    this.showInsertPicDialog = function(selectedPic) {
       this.navbarCollapsed = true;
       
       var modalInstance = $modal.open({
         templateUrl: "/static/partials/insert_pic_modal.html",
         controller: "InsertModalController",
         controllerAs: "insertModalCtrl",
+        resolve: {
+          picInModal: function () {
+            return selectedPic;
+          }
+        }
       });
 
       modalInstance.result.then(function (weatherpicFromModal) {
-        weatherpicsController.pics.push(weatherpicFromModal);
+        if (selectedPic == undefined) {
+          weatherpicsController.pics.unshift(weatherpicFromModal);
+        } else {
+          var indexOfSelectedPic = weatherpicsController.pics.indexOf(selectedPic);
+          if (indexOfSelectedPic > -1) {
+            weatherpicsController.pics.splice(indexOfSelectedPic, 1);
+          }
+          weatherpicsController.pics.unshift(weatherpicFromModal);
+        }
       });
     };
   });
-
-  app.controller("InsertModalController", function($modalInstance, $timeout) {
-    this.imageUrl = "";
-    this.caption = "";
-    
-    this.insertPic = function () {
-      var weatherpicFromModal = {image_url: this.imageUrl, caption: this.caption};
-      $modalInstance.close(weatherpicFromModal);
-    };
-
-    // Add comment
-    $modalInstance.opened.then(function() {
-      $timeout(function() {
-        document.querySelector("#image-url-input").focus();
-      }, 100);
-    });
-    
-    this.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-  });
-  
-  
+ 
   var pics = [
               {image_url: "http://severe-wx.pbworks.com/f/tornado.jpg", caption:"Wow!"},
               {image_url: "http://upload.wikimedia.org/wikipedia/commons/6/6b/Mount_Carmel_forest_fire14.jpg", caption:"Big fire"},

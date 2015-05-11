@@ -1,6 +1,6 @@
 <div class="modal-header">
   <button type="button" class="close" ng-click="insertModalCtrl.cancel()">&times;</button>
-  <h4 class="modal-title">Add a Weatherpic</h4>
+  <h4 class="modal-title">{{insertModalCtrl.isNewPic ? "Add a Weatherpic" : "Edit Weatherpic"}}</h4>
 </div>
 <form class="form-horizontal" ng-submit="insertModalCtrl.insertPic()">
   <div class="modal-body">
@@ -19,6 +19,6 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="insertModalCtrl.cancel()">Cancel</button>
-    <button type="submit" class="btn btn-primary">Add Weatherpic</button>
+    <button type="submit" class="btn btn-primary">{{insertModalCtrl.isNewPic ? "Add Weatherpic" : "Edit Weatherpic"}}</button>
   </div>
 </form>

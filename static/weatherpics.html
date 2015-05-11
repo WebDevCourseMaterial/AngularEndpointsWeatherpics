@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="weatherpicsApp" >
+<html lang="en" ng-app="weatherpicsApp">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
 <script src="/static/js/app.js"></script>
-
+<script src="/static/js/modal_controllers.js"></script>
 
 </head>
 <body ng-controller="WeatherpicsController as weatherpicsCtrl">
@@ -21,21 +21,21 @@
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" 
-        ng-click="weatherpicsCtrl.navbarCollapsed = !weatherpicsCtrl.navbarCollapsed">
-          <span class="sr-only">Toggle navigation</span> 
-          <span class="icon-bar"></span> 
-          <span class="icon-bar"></span> <span class="icon-bar"></span>
+        <button type="button" class="navbar-toggle collapsed"
+          ng-click="weatherpicsCtrl.navbarCollapsed = !weatherpicsCtrl.navbarCollapsed">
+          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+            class="icon-bar"></span> <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">Weatherpics</a>
       </div>
       <div collapse="weatherpicsCtrl.navbarCollapsed" class="navbar-collapse">
         <ul class="nav navbar-nav navbar-left">
-          <li><a ng-click="weatherpicsCtrl.showInsertPicDialog()"
-            href="#">Add Weatherpic</a></li>
+          <li><a ng-click="weatherpicsCtrl.showInsertPicDialog()" href="#">Add Weatherpic</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a ng-model="weatherpicsCtrl.isEditing" ng-click="weatherpicsCtrl.navbarCollapsed = true"  btn-checkbox href="#">{{ weatherpicsCtrl.isEditing ? "Done" : "Edit" }}</a></li>
+          <li><a ng-model="weatherpicsCtrl.isEditing"
+            ng-click="weatherpicsCtrl.navbarCollapsed = true" btn-checkbox href="#">{{
+              weatherpicsCtrl.isEditing ? "Done" : "Edit" }}</a></li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -47,19 +47,17 @@
     <div id="columns">
       <!-- loop -->
       <div class="pin" ng-repeat="pic in weatherpicsCtrl.pics">
-        <div ng-show = "weatherpicsCtrl.isEditing" class=" pull-right edit-actions">
-          <button data-toggle="modal" data-target="#insert-weatherpic-modal" type="button"
-            class="edit-weatherpic btn btn-xs btn-success">
+        <div ng-show="weatherpicsCtrl.isEditing" class=" pull-right edit-actions">
+          <button type="button" class="btn btn-xs btn-success" ng-click="weatherpicsCtrl.showInsertPicDialog(pic)">
             <span class="glyphicon glyphicon-pencil"></span>
 
           </button>
-          <button data-toggle="modal" data-target="#delete-weatherpic-modal" type="button"
-            class="delete-weatherpic btn btn-xs btn-danger">
+          <button type="button" class="btn btn-xs btn-danger" ng-click="weatherpicsCtrl.showDeletePicDialog(pic)">
             <span class="glyphicon glyphicon-remove"></span>
 
           </button>
         </div>
-         <img src="{{ pic.image_url }}" alt="A picture of weather">
+        <img src="{{ pic.image_url }}" alt="A picture of weather">
         <p class="caption">{{ pic.caption }}</p>
       </div>
     </div>

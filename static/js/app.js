@@ -9,6 +9,7 @@
     this.navbarCollapsed = true;
     
     this.showInsertPicDialog = function() {
+      this.navbarCollapsed = true;
       
       var modalInstance = $modal.open({
         templateUrl: "/static/partials/insert_pic_modal.html",

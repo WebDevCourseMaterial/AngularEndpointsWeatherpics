@@ -21,14 +21,15 @@
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-          data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
-            class="icon-bar"></span> <span class="icon-bar"></span>
+        <button type="button" class="navbar-toggle collapsed" 
+        ng-click="weatherpicsCtrl.navbarCollapsed = !weatherpicsCtrl.navbarCollapsed">
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">Weatherpics</a>
       </div>
-      <div collapse="weatherpicsCtrl.navbarCollapsed" class="navbar-collapse collapse">
+      <div collapse="weatherpicsCtrl.navbarCollapsed" class="navbar-collapse">
         <ul class="nav navbar-nav navbar-left">
           <li><a ng-click="weatherpicsCtrl.showInsertPicDialog()"
             href="#">Add Weatherpic</a></li>
@@ -62,7 +63,6 @@
         <p class="caption">{{ pic.caption }}</p>
       </div>
     </div>
-    <div>{{"navbarCollapsed = " + weatherpicsCtrl.navbarCollapsed}}</div>
 
   </div>
 </body>

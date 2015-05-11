@@ -30,6 +30,26 @@
         weatherpicsController.pics.unshift(weatherpicFromModal);
       });
     };
+
+    this.showDeletePicDialog = function(selectedPic) {
+      var modalInstance = $modal.open({
+        templateUrl: "/static/partials/delete_pic_modal.html",
+        controller: "DeleteModalController",
+        controllerAs: "deleteModalCtrl",
+        resolve: {
+          picInModal: function () {
+            return selectedPic;
+          }
+        }
+      });
+
+      modalInstance.result.then(function () {
+        var indexOfSelectedPic = weatherpicsController.pics.indexOf(selectedPic);
+        if (indexOfSelectedPic > -1) {
+          weatherpicsController.pics.splice(indexOfSelectedPic, 1);
+        }
+      });
+    };
   });
  
   var pics = [

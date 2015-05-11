@@ -24,4 +24,16 @@
       $modalInstance.dismiss('cancel');
     };
   });
+  
+  app.controller("DeleteModalController", function($modalInstance, picInModal) {
+    this.deletePic = function() {
+      $modalInstance.close();
+    };
+
+    this.cancel = function() {
+      $modalInstance.dismiss('cancel');
+    };
+  });
+  
+  
 })();

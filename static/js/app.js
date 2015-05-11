@@ -21,15 +21,13 @@
       });
 
       modalInstance.result.then(function (weatherpicFromModal) {
-        if (selectedPic == undefined) {
-          weatherpicsController.pics.unshift(weatherpicFromModal);
-        } else {
+        if (selectedPic != undefined) {
           var indexOfSelectedPic = weatherpicsController.pics.indexOf(selectedPic);
           if (indexOfSelectedPic > -1) {
             weatherpicsController.pics.splice(indexOfSelectedPic, 1);
           }
-          weatherpicsController.pics.unshift(weatherpicFromModal);
         }
+        weatherpicsController.pics.unshift(weatherpicFromModal);
       });
     };
   });
